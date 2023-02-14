@@ -1,5 +1,7 @@
 # Keyboard to vJoy
 
+![Screenshot displaying Keyboard to vJoy interface](./screenshot.png?raw=true)
+
 Keyboard to vJoy is a Windows application that allows you to bind keys to vJoy
 buttons, axes, and POVs (d-pads) using .ini configuration files.
 
