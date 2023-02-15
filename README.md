@@ -5,9 +5,10 @@
 Keyboard to vJoy is a Windows application that allows you to bind keys to vJoy
 buttons, axes, and POVs (d-pads) using .ini configuration files.
 
-**This application requires vJoy 2.0.4 or greater.** Version
-[2.2.1.1](https://github.com/njz3/vJoy/releases/tag/v2.2.1.1) or later is
-recommended. vJoy can be installed and enabled without rebooting.
+**This application requires vJoy 2.0.4 or greater.**
+
+Version [2.2.1.1](https://github.com/njz3/vJoy/releases/tag/v2.2.1.1) or later
+is recommended. vJoy can be installed and enabled without rebooting.
 
 ## Bind Configuration File Syntax
 
