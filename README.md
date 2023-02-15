@@ -5,44 +5,45 @@
 Keyboard to vJoy is a Windows application that allows you to bind keys to vJoy
 buttons, axes, and POVs (d-pads) using .ini configuration files.
 
+**This application requires vJoy 2.0.4 or greater.** Version
+[2.2.1.1](https://github.com/njz3/vJoy/releases/tag/v2.2.1.1) or later is
+recommended. vJoy can be installed and enabled without rebooting.
+
+## Bind Configuration File Syntax
+
+Ini files _should_ start with a `meta` section to name the configuration and its
+author.
+
 ```ini
 [meta]
-name=Example
-author=DaeCatt
+name="Configuration Name"
+author="Your Name or Alias"
+```
 
-[binds]
-; Binds the fact buttons on a gamepad to ZXCV
-Z=B1
-X=B2
-C=B3
-V=B4
+Keybinds are defined under the `binds` section in the configuration .ini. Each key
+is defined by its name followed by what buttons and axes it should control.
 
-; Binds WS to the Y axis on the left joystick, and AD to the X axis on the left joystick.
+```ini
+key_name=button_code axis_code pov_code
+
+; Examples
+; A presses button 1
+A=B1
+
+; WASD controls the XY axes (usually detected as the left joystick)
 W=Y1
 A=X-1
 S=Y-1
 D=X1
 
-; Binds IJ to the Y axis on the right joystick, and JL to the X axis on the right joystick.
-I=RZ1
-J=Z-1
-K=RZ-1
-L=Z-1
-
-; Binds the keyboard arrows to the _C_ontinuos POV (d-pad).
+; Arrow keys control a Continuos d-pad (POV)
 Up=Cup
 Left=Cleft
 Down=Cdown
 Right=Cright
-```
 
-## Syntax
-
-Under the _binds_ section in your configuration .ini each bind is defined by the
-name of the key and what buttons and axes it affects:
-
-```
-key_name=button_code axis_code pov_code
+; Q holds the left stick to the top left and presses button 1
+Q=Y70.7% X-70.7% B1
 ```
 
 ### Buttons
@@ -54,46 +55,55 @@ B(1-128)
 ```
 
 Keyboard to VJoy will only be able to press up to the amount of buttons you have
-configured your joystick to have. Modern gamepads are expected to have 14 buttons,
-according to the Windows USB controller test these are numbered:
+configured your joystick to have in the "Configure vJoy" app.
 
-| Number | PlayStation |
-| -----: | ----------- |
-|      1 | Square      |
-|      2 | X           |
-|      3 | Circle      |
-|      4 | Triangle    |
-|      5 | L1          |
-|      6 | R1          |
-|      7 | L2          |
-|      8 | R2          |
-|      9 | Share       |
-|     10 | Options     |
-|     11 | L3          |
-|     12 | R3          |
-|     13 | Touchpad    |
-|     14 | PS Button   |
+Button numbers are arbitrary, but this is what they correspond to on a DualShock
+4 and an Xbox One controller:
+
+| Number | PlayStation | Xbox  |
+| -----: | ----------- | ----- |
+|      1 | Square      | A     |
+|      2 | X           | B     |
+|      3 | Circle      | X     |
+|      4 | Triangle    | Y     |
+|      5 | L1          | LB    |
+|      6 | R1          | RB    |
+|      7 | L2          | View  |
+|      8 | R2          | Menu  |
+|      9 | Share       | L3    |
+|     10 | Options     | R3    |
+|     11 | L3          | Home  |
+|     12 | R3          | Share |
+|     13 | Touchpad    |       |
+|     14 | PS Button   |       |
 
 ### Axes
 
 An axis code is the name of the axis (`X`, `Y`, `Z`, `RX`, `RY`, or `RZ`)
 followed by an amount as either a number [-1, 1] or a percentage [-100%, 100%].
 
-```
+```ini
 ; X 10%
 X0.1 or X10% or X.1
 ; Y -100%
 Y-1 or Y-100%
 ```
 
-| Axis | PlayStation   |
-| ---: | ------------- |
-|    X | Left stick X  |
-|    Y | Left stick Y  |
-|    Z | Right stick X |
-|   RZ | Right stick Y |
-|   RX | L2 analog     |
-|   RY | R2 analog     |
+While axes are named what they correspond to is not standardized. This is what
+the supported axes correspond to on a DualShock 4 and an Xbox One controller:
+
+| Axis | PlayStation   | Xbox          |
+| ---: | ------------- | ------------- |
+|    X | Left stick X  | Left stick X  |
+|    Y | Left stick Y  | Left stick X  |
+|    Z | Right stick X | Both triggers |
+|   RZ | Right stick Y |               |
+|   RX | L2 analog     | Right stick X |
+|   RY | R2 analog     | Right stick Y |
+
+Note: Xbox controllers merge both triggers into a single centered axis. The left
+trigger moves it left while the right trigger moves it right. DirectInput
+therefore cannot detect if both triggers are being used on an Xbox controller.
 
 ### POVs (D-Pad)
 
