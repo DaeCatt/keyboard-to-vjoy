@@ -307,7 +307,8 @@ PollBinds(*) {
 	; Update continous pov
 	if (DeviceProperties.POV.CONTINUOUS) {
 		value := -1
-		if (cPovX != 0 || cPovY != 0) {
+		squaredHypot := cPovX * cPovX + cPovY * cPovY
+		if ((cPovX != 0 || cPovY != 0) && squaredHypot > 0.01) {
 			angle := Atan2(cPovY, cPovX) * RAD2DEG
 			value := Mod(Round(angle + 360), 360) * 100
 		}
