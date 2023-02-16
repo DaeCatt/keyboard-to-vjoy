@@ -37,7 +37,7 @@ UpdateBindsMetaText(*) {
 		return
 	}
 	
-	bindsMetaText.Text := BindsName " by " BindsAuthor "`n" Binds.Count " keybinds for " BindRequirements.BUTTONS " buttons"
+	bindsMetaText.Text := BindsName " by " BindsAuthor "`n" Binds.Count " keybinds for " BindRequirements.BUTTONS.Length " buttons"
 }
 
 ; Create vJoy device picker
@@ -141,6 +141,13 @@ CloseToTray_Click(*) {
 	UpdateTrayBehavior()
 }
 
+; statusBar := interface.AddStatusBar(, "")
+; try {
+; 	productString := StrGet(DllCall("vJoyInterface\GetvJoyProductString"))
+; 	manufacturerString := StrGet(DllCall("vJoyInterface\GetvJoyManufacturerString"))
+; 	serialNumberString := StrGet(DllCall("vJoyInterface\GetvJoySerialNumberString"))
+; 	statusBar.SetText(productString "-" manufacturerString "-" serialNumberString)
+; }
 
 ShowGUI(*) {
 	interface.Show()

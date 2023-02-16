@@ -13,7 +13,7 @@ global DeviceProperties := {
 global BindsName := ""
 global BindsAuthor := ""
 global Binds := Map()
-global BindRequirements := {AXIS: {X: 0, Y: 0, Z: 0, RX: 0, RY: 0, RZ: 0}, BUTTONS: 0, POV: {CONTINUOUS: 0, DISCRETE: 0}}
+global BindRequirements := {AXIS: {X: 0, Y: 0, Z: 0, RX: 0, RY: 0, RZ: 0}, BUTTONS: [], POV: {CONTINUOUS: 0, DISCRETE: 0}}
 
 ; Consts
 VJOY_MAX_DEVICES := 16
@@ -92,7 +92,7 @@ LoadBinds() {
 	for axis, in AXISES {
 		BindRequirements.AXIS.%axis% := 0
 	}
-	BindRequirements.BUTTONS := 0
+	BindRequirements.BUTTONS.Length := 0
 	BindRequirements.POV.CONTINUOUS := 0
 	BindRequirements.POV.DISCRETE := 0
 
@@ -139,9 +139,11 @@ LoadBinds() {
 					if (IsInteger(button) && button > 0) {
 						button := button|0
 						actions.Push(["B", button])
-						if (button > BindRequirements.BUTTONS) {
-							BindRequirements.BUTTONS := button
+						if (BindRequirements.BUTTONS.Length < button) {
+							BindRequirements.BUTTONS.Length := button
 						}
+						
+						BindRequirements.BUTTONS.InsertAt(button, 1)
 					}
 
 					continue
