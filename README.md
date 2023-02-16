@@ -1,4 +1,4 @@
-# Keyboard to vJoy
+![Keyboard to vJoy Logo](./logo.svg?raw=true)
 
 ![Screenshot displaying Keyboard to vJoy interface](./screenshot.png?raw=true)
 
